@@ -8,7 +8,9 @@ RUN apt-get update
 RUN apt-get install -y git gradle
 
 #get the source and build it
-RUN git clone --branch v1.8.1  https://github.com/Netflix/conductor /src
+ENV PDOK_CONDUCTOR_VERSION 1.8.1
+LABEL version="$PDOK_CONDUCTOR_VERSION"
+RUN git clone --branch v$PDOK_CONDUCTOR_VERSION https://github.com/Netflix/conductor /src
 
 WORKDIR /src
 RUN gradle -x test build
