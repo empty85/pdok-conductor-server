@@ -15,9 +15,6 @@ RUN git clone --branch v$PDOK_CONDUCTOR_VERSION https://github.com/Netflix/condu
 WORKDIR /src
 RUN gradle -x test build -Prelease.version=$PDOK_CONDUCTOR_VERSION
 
-WORKDIR /src/server/build/libs
-RUN for i in conductor*-all.jar; do mv "$i" "`echo $i | sed 's/-SNAPSHOT//'`"; done
-
 #now create a new container with just the artifacts
 FROM java:8-jre-alpine
 # Make app folders
