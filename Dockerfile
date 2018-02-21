@@ -13,7 +13,7 @@ LABEL version="$PDOK_CONDUCTOR_VERSION"
 RUN git clone --branch v$PDOK_CONDUCTOR_VERSION https://github.com/Netflix/conductor /src
 
 WORKDIR /src
-RUN gradle -x test build
+RUN gradle -x -Prelease.version=$PDOK_CONDUCTOR_VERSION test build
 
 WORKDIR /src/server/build/libs
 RUN for i in conductor*-all.jar; do mv "$i" "`echo $i | sed 's/-SNAPSHOT//'`"; done
