@@ -7,10 +7,10 @@ MAINTAINER Netflix OSS <conductor@netflix.com>
 RUN apt-get update
 RUN apt-get install -y git gradle
 
-ENV PDOK_CONDUCTOR_VERSION 1.8.1
+ENV PDOK_CONDUCTOR_VERSION 1.8.2-rc8
 LABEL version="$PDOK_CONDUCTOR_VERSION"
 # get the source from git of an specific version
-RUN git clone --branch v$PDOK_CONDUCTOR_VERSION https://github.com/Netflix/conductor /src
+RUN git clone --branch $PDOK_CONDUCTOR_VERSION https://github.com/Netflix/conductor /src
 
 WORKDIR /src
 # override the default version logic with an specific version and build it
