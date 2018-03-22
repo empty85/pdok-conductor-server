@@ -27,6 +27,7 @@ COPY --from=builder /src/docker/server/bin /app
 COPY --from=builder /src/docker/server/config /app/config
 
 # override the config
+COPY config.properties /app/config/config.properties
 COPY --from=builder /src/server/build/libs/conductor-server-*-all.jar /app/libs
 
 RUN chmod +x /app/startup.sh
